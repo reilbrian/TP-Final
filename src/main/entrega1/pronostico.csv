@@ -1,0 +1,19 @@
+﻿EQUIPO 1;gana 1;empate;gana 2;EQUIPO 2;apostador
+Argentina;x;;;Arabia;maria
+Polonia;;x;;Mexico;maria
+Argentina;x;;;Mexico;maria
+Polonia;x;;;Arabia;maria
+francia;x;;;inglaterra;maria
+portugal;x;;;uruguay;maria
+Argentina;;;x;Arabia;jose
+Polonia;;x;;Mexico;jose
+Argentina;x;;;Mexico;jose
+Polonia;;;x;Arabia;jose
+francia;;;x;inglaterra;jose
+portugal;x;;;uruguay;jose
+Argentina;;;x;Arabia;bob
+Polonia;;;x;Mexico;bob
+Argentina;;;x;Mexico;bob
+Polonia;;;x;Arabia;bob
+francia;;;x;inglaterra;bob
+portugal;;;x;uruguay;bob

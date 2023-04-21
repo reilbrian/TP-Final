@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14db9062-1622-4be2-b94d-3b4228148740" name="Changes" comment="" />
+    <list default="true" id="14db9062-1622-4be2-b94d-3b4228148740" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/Partido.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/Pronostico.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/Ronda.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/ExampleTest1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/example1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Main.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +26,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -29,7 +44,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/brian/OneDrive/Escritorio/escuela/Argentina Programa/tp integrador/TP-Final/src"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

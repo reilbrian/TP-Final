@@ -1,11 +1,12 @@
+package org.example;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
 public class Main {
-    public static String PRONOSTICO = "src/entrega1/pronostico.csv";
-    public static String RESULTADOS = "src/entrega1/resultados.csv";
+    public static String PRONOSTICO = "C:\\Users\\brian\\OneDrive\\Escritorio\\escuela\\Argentina Programa\\tp integrador\\TP-Final\\src\\main\\entrega1\\pronostico.csv";
+    public static String RESULTADOS = "C:\\Users\\brian\\OneDrive\\Escritorio\\escuela\\Argentina Programa\\tp integrador\\TP-Final\\src\\main\\entrega1\\resultados.csv";
     public static void main(String[] args) throws IOException {
         String pronostico = PRONOSTICO;
         String resultados = RESULTADOS;
