@@ -2,36 +2,30 @@ package org.example;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.FileReader;
-import java.io.BufferedReader;
+import java.sql.*;
 
 public class Main {
-    public static String PRONOSTICO = "C:\\Users\\brian\\OneDrive\\Escritorio\\escuela\\Argentina Programa\\tp integrador\\TP-Final\\src\\main\\entrega1\\pronostico.csv";
-    public static String RESULTADOS = "C:\\Users\\brian\\OneDrive\\Escritorio\\escuela\\Argentina Programa\\tp integrador\\TP-Final\\src\\main\\entrega1\\resultados.csv";
-    public static void main(String[] args) throws IOException {
-        String pronostico = PRONOSTICO;
-        String resultados = RESULTADOS;
 
-        System.out.println("Este es nuestro string path:" + resultados);
-        System.out.println("Este es nuestro string path:" + pronostico);
+    public static void main(String[] args) throws SQLException {
 
         //Lectura de los resultados de los partidos
 
-        String lineares; //string que lee los resultados uno por uno
-        BufferedReader br = new BufferedReader(new FileReader(resultados));
-        lineares = br.readLine();
         String[] nombresequipo = new String[100];
         int[] golesanotados = new int[100];
         int[] rondanum= new int[100];
         int equiposcant = 0;
         int rondacant = 0;
         int j=0;
-        for (int i = 0; (lineares = br.readLine()) != null; i++) {
-            String[] posicion = lineares.split(";");
-            rondanum[j]=Integer.parseInt(posicion[0]);
-            nombresequipo[i] = posicion[1];
-            golesanotados[i] = Integer.parseInt(posicion[2]);
-            nombresequipo[i + 1] = posicion[3];
-            golesanotados[i + 1] = Integer.parseInt(posicion[4]);
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tp", "root", "ratchet124");
+        Statement stmt = con.createStatement();
+        ResultSet rs=stmt.executeQuery("SELECT * FROM resultados");
+        for (int i = 0; rs.next(); i++) {
+
+            rondanum[j]=Integer.parseInt(rs.getString(2));
+            nombresequipo[i] = rs.getString(3);
+            golesanotados[i] = Integer.parseInt(rs.getString(4));
+            nombresequipo[i + 1] = rs.getString(5);
+            golesanotados[i + 1] = Integer.parseInt(rs.getString(6));
             rondacant=rondanum[i];
             i++;j++;
             equiposcant = equiposcant + 2;
@@ -43,8 +37,6 @@ public class Main {
         ArrayList<Ronda> rondas = new ArrayList<Ronda>();
         Ronda ronda1 = new Ronda ();
         Ronda ronda2 = new Ronda ();
-
-        // Pasar a una fase las rondas instanciadas.
 
         for (int i = 0; i < equiposcant; i++) {
             equipos[i] = new Equipo(nombresequipo[i], i);
@@ -68,28 +60,27 @@ public class Main {
 
         // lectura del pronostico de los partidos
 
-        String lineapro;
-        BufferedReader br1 = new BufferedReader(new FileReader(pronostico));
+
+        ResultSet rs1=stmt.executeQuery("SELECT * FROM pronosticos");
         String[] resultadospro = new String[100];
         String[] equiposs=new String[100];
         ArrayList<String> nombres=new ArrayList<String>();
 
-        lineapro = br1.readLine();
         int proncant = 0;
         j=0;
-        for (int i = 0; (lineapro = br1.readLine()) != null; i++) {
+        for (int i = 0;rs1.next(); i++) {
 
-            String[] posicion = lineapro.split(";");
-            equiposs[j]=posicion[0];
-            resultadospro[i] = posicion[1];
-            resultadospro[i + 1] = posicion[2];
-            resultadospro[i + 2] = posicion[3];
-            equiposs[j+1]=posicion[4];
-            nombres.add(posicion[5]);
+            equiposs[j]=rs1.getString(2);
+            resultadospro[i] = rs1.getString(3);
+            resultadospro[i + 1] = rs1.getString(4);
+            resultadospro[i + 2] = rs1.getString(5);
+            equiposs[j+1]=rs1.getString(6);
+            nombres.add(rs1.getString(7));
             i = i + 2;
             j=j+2;
             proncant++;
         }
+        con.close();
         j=0;int z=0;
         Pronostico[] pronosticos = new Pronostico[proncant];
         for (int i = 0; i < proncant; i++) {
@@ -99,6 +90,7 @@ public class Main {
             j=j+3;z=z+2;
         }
 
+        rondas.get(0).ListarGanadores();
         rondas.get(1).ListarGanadores();
         //detecta los pronosticos
         int[] puntaje = new int[10];

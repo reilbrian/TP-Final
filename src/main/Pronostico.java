@@ -22,10 +22,10 @@ public class Pronostico {
     public String getempate(){return empate; }
     public String getequipo2(){return equipo2; }
     public String getapuesta(){
-        if (gana1.equals("x")){
+        if (gana1.equalsIgnoreCase("x")){
             return equipo1;
         }
-        if (gana2.equals("x")){
+        if (gana2.equalsIgnoreCase("x")){
             return equipo2;
         }
         else{
