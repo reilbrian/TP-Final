@@ -23,9 +23,9 @@ public class Main {
 
             rondanum[j]=Integer.parseInt(rs.getString(2));
             nombresequipo[i] = rs.getString(3);
-            golesanotados[i] = Integer.parseInt(rs.getString(4));
+            golesanotados[i] = rs.getInt(4);
             nombresequipo[i + 1] = rs.getString(5);
-            golesanotados[i + 1] = Integer.parseInt(rs.getString(6));
+            golesanotados[i + 1] = rs.getInt(6);
             rondacant=rondanum[i];
             i++;j++;
             equiposcant = equiposcant + 2;
