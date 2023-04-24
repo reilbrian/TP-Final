@@ -1,4 +1,3 @@
-package org.example;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.FileReader;
@@ -8,7 +7,11 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
-        //Lectura de los resultados de los partidos
+        //conexion con la db
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tp", "root", "ratchet124");
+        Statement stmt = con.createStatement();
+
+        //Lectura de la tabla resultados
 
         String[] nombresequipo = new String[100];
         int[] golesanotados = new int[100];
@@ -16,12 +19,11 @@ public class Main {
         int equiposcant = 0;
         int rondacant = 0;
         int j=0;
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tp", "root", "ratchet124");
-        Statement stmt = con.createStatement();
+
         ResultSet rs=stmt.executeQuery("SELECT * FROM resultados");
         for (int i = 0; rs.next(); i++) {
 
-            rondanum[j]=Integer.parseInt(rs.getString(2));
+            rondanum[j]= rs.getInt(2);
             nombresequipo[i] = rs.getString(3);
             golesanotados[i] = rs.getInt(4);
             nombresequipo[i + 1] = rs.getString(5);
@@ -30,6 +32,28 @@ public class Main {
             i++;j++;
             equiposcant = equiposcant + 2;
         }
+        // lectura del pronostico de los partidos
+
+        ResultSet rs1=stmt.executeQuery("SELECT * FROM pronosticos");
+        String[] resultadospro = new String[100];
+        String[] equiposs=new String[100];
+        ArrayList<String> nombres=new ArrayList<String>();
+
+        int proncant = 0;
+        j=0;
+        for (int i = 0;rs1.next(); i++) {
+
+            equiposs[j]=rs1.getString(2);
+            resultadospro[i] = rs1.getString(3);
+            resultadospro[i + 1] = rs1.getString(4);
+            resultadospro[i + 2] = rs1.getString(5);
+            equiposs[j+1]=rs1.getString(6);
+            nombres.add(rs1.getString(7));
+            i = i + 2;
+            j=j+2;
+            proncant++;
+        }
+        con.close();
 
         //formador de equipos
         Equipo equipos[] = new Equipo[equiposcant];
@@ -54,33 +78,9 @@ public class Main {
                 ronda2.partidos.add(partidoss.get(i));
             }
         }
-
         rondas.add(ronda1);
         rondas.add(ronda2);
 
-        // lectura del pronostico de los partidos
-
-
-        ResultSet rs1=stmt.executeQuery("SELECT * FROM pronosticos");
-        String[] resultadospro = new String[100];
-        String[] equiposs=new String[100];
-        ArrayList<String> nombres=new ArrayList<String>();
-
-        int proncant = 0;
-        j=0;
-        for (int i = 0;rs1.next(); i++) {
-
-            equiposs[j]=rs1.getString(2);
-            resultadospro[i] = rs1.getString(3);
-            resultadospro[i + 1] = rs1.getString(4);
-            resultadospro[i + 2] = rs1.getString(5);
-            equiposs[j+1]=rs1.getString(6);
-            nombres.add(rs1.getString(7));
-            i = i + 2;
-            j=j+2;
-            proncant++;
-        }
-        con.close();
         j=0;int z=0;
         Pronostico[] pronosticos = new Pronostico[proncant];
         for (int i = 0; i < proncant; i++) {
@@ -108,6 +108,27 @@ public class Main {
             }
             z++;
         }
+        //suma puntaje extra
+        /*
+        j=0; z=0; aux= pronosticos[0].getapostador();aux1=rondanum[0];boolean addpoint= true;
+        for (int i = 0; i < pronosticos.length; i++) {
+
+            if(aux.equals(nombres.get(i))){}
+            else {
+                j++;z=0;aux= pronosticos[i].getapostador();
+            }
+            if(aux1!=rondanum[z]){
+                if(addpoint){
+                    puntaje[j]=puntaje[j]+1;
+                }
+            }
+            if ((partidoss.get(z).getGanador()).equalsIgnoreCase(pronosticos[i].getapuesta()))  {}
+            else{ addpoint=false; }
+            z++;
+        }
+        for (int i=0 ;i<2;i++) {System.out.println(aux+" sumo :" + puntaje[i] + " puntos");}*/
+
         System.out.println(aux+" sumo :" + puntaje[j] + " puntos");
+
     }
 }
